@@ -290,3 +290,56 @@ footer small{color:#9aa7a8;font:700 7px var(--mono)}
   .hero-action{padding-left:12px;padding-right:12px}
   .hero-call-112{min-width:100px}
 }
+
+
+/* Focused emergency layout: clear actions, no decorative filler. */
+.hero-action{
+  display:grid;
+  grid-template-columns:minmax(0,1.1fr) minmax(300px,.72fr);
+  align-items:center;
+  gap:clamp(32px,7vw,100px);
+  min-height:440px;
+  padding:56px clamp(28px,5vw,68px);
+}
+.hero-action .hero-content{max-width:650px;padding:0}
+.hero-action h1{margin:0 0 24px;font-size:clamp(58px,6.3vw,88px)}
+.hero-action .hero-content>p{max-width:510px;font-size:15px;line-height:1.75}
+.hero-emergency{
+  position:relative;z-index:1;
+  display:flex;flex-direction:column;gap:12px;
+  width:100%;max-width:390px;margin-left:auto;
+  padding:26px;background:#193541;
+  border:1px solid #ffffff20;border-radius:16px;
+  box-shadow:0 24px 70px #07151c55;
+}
+.hero-emergency>p{margin:0 0 5px;color:#e8f2ef;font-size:15px;font-weight:750}
+.hero-emergency .hero-call{width:100%;min-height:76px;padding:14px 18px;border-radius:10px}
+.hero-emergency .hero-call-999{min-width:0}
+.hero-emergency .hero-call-112{min-width:0;background:#ffffff0a}
+.hero-emergency .hero-call strong{display:flex;justify-content:space-between;align-items:center;font-size:22px}
+.hero-emergency .hero-call strong span{font-size:18px}
+.hero-emergency>small{margin-top:3px;color:#b5c7c9;font-size:11px;line-height:1.65}
+.sectionhead{margin-bottom:22px}
+.sectionhead h2{margin:0 0 8px}
+.card .number,.cardfoot{display:none!important}
+.card .title{margin-top:11px}
+.desc{min-height:0;margin-bottom:2px}
+@media(max-width:900px){
+  .hero-action{grid-template-columns:minmax(0,1fr) minmax(260px,.8fr);gap:26px;min-height:390px;padding:44px 30px}
+  .hero-action h1{font-size:clamp(52px,6.5vw,70px)}
+  .hero-emergency{padding:20px}
+}
+@media(max-width:620px){
+  .hero-action{display:flex;flex-direction:column;align-items:stretch;gap:25px;min-height:0;margin:0 -15px;padding:42px 22px 24px}
+  .hero-action .hero-content{padding:0;max-width:none}
+  .hero-action h1{font-size:clamp(48px,13vw,66px);margin:0 0 15px}
+  .hero-action .hero-content>p{font-size:12px;line-height:1.7}
+  .hero-emergency{max-width:none;margin:0;padding:16px;gap:9px;border-radius:12px}
+  .hero-emergency>p{font-size:13px}
+  .hero-emergency .hero-call{min-height:58px;padding:10px 13px}
+  .hero-emergency .hero-call strong{font-size:18px}
+  .hero-emergency>small{font-size:9px}
+  .sectionhead{margin-bottom:16px}
+  .sectionhead h2{font-size:34px}
+  .card .title{margin-top:9px}
+}
