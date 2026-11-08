@@ -80,14 +80,23 @@ document.querySelectorAll("[data-guide]").forEach(b=>b.addEventListener("click",
   let demoReady=false;
   let pending=false;
 
+  let closeTimer;
   function setOpen(open,restoreFocus=true){
-    panel.hidden=!open;
+    window.clearTimeout(closeTimer);
     toggle.setAttribute("aria-expanded",String(open));
-    if(open)checkButton.focus();
-    else if(restoreFocus)toggle.focus();
+    if(open){
+      panel.hidden=false;
+      window.requestAnimationFrame(()=>panel.classList.add("is-open"));
+      close.focus();
+    }else{
+      panel.classList.remove("is-open");
+      closeTimer=window.setTimeout(()=>{panel.hidden=true;},240);
+      if(restoreFocus)toggle.focus();
+    }
   }
   toggle.addEventListener("click",()=>setOpen(panel.hidden));
   close.addEventListener("click",()=>setOpen(false));
+  panel.addEventListener("click",event=>{if(event.target===panel)setOpen(false,false)});
   document.addEventListener("click",event=>{
     if(!panel.hidden&&!panel.contains(event.target)&&!toggle.contains(event.target))setOpen(false,false);
   });
