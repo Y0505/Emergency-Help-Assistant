@@ -71,9 +71,26 @@
 <section class="note" aria-label="Important safety information"><span class="note-mark" aria-hidden="true">!</span><div class="note-copy"><strong>Emergency help comes first.</strong><p>If someone is seriously ill or injured, call emergency services now. Do not delay to follow a guide.</p></div></section>
 </main>
 <main id="guide" hidden>
-  <div class="guidebar"><button id="back">← <span>ALL SITUATIONS</span></button><span id="guideid">GUIDE / 01</span></div>
   <div class="guidegrid">
-    <aside><div class="eyebrow"><span></span> VISUAL FIRST AID</div><h2 id="guideTitle"></h2><p id="guideIntro"></p><div class="progress"><i id="progress"></i></div><div class="progresslabels"><span id="stepCount"></span><span id="total"></span></div><div class="callbox"><b>!</b><div><strong>Call for help</strong><p>In a life-threatening emergency, call 999 now. Use speakerphone if possible.</p><a href="tel:999">CALL 999 ↗</a></div></div><small class="source" id="guideSource"></small></aside>
+    <aside class="guide-sidebar">
+      <div class="sidebar-kicker"><span class="sidebar-kicker-mark">✳</span> FIRST AID GUIDE</div>
+      <h2 id="guideTitle"></h2>
+      <p class="guide-intro" id="guideIntro"></p>
+      <div class="progress-card">
+        <div class="progress-heading"><span>YOUR PROGRESS</span><strong><span id="stepCount"></span><i>/</i><span id="total"></span></strong></div>
+        <div class="progress"><i id="progress"></i></div>
+      </div>
+      <div class="callbox">
+        <div class="callbox-icon" aria-hidden="true">!</div>
+        <div class="callbox-content">
+          <span class="callbox-label">NEED URGENT HELP?</span>
+          <strong>Call for help</strong>
+          <p>In a life-threatening emergency, call 999 now. Use speakerphone if possible.</p>
+          <a href="tel:999"><span>Call emergency services</span><b>999 <i>↗</i></b></a>
+        </div>
+      </div>
+      <div class="source-card"><span class="source-dot"></span><span id="guideSource"></span></div>
+    </aside>
     <section class="step"><div class="stepmeta"><b id="stepNum">01</b><i></i><span id="category"></span></div><div class="stepbody"><div class="visual" id="visual"></div><div class="stepcopy"><small id="stepLabel"></small><h2 id="heading"></h2><p id="description"></p><div id="choices" class="choices"></div></div></div><div class="controls"><button id="prev">← BACK</button><button id="next">NEXT STEP →</button></div></section>
   </div>
   <div class="guidewarning">IF YOU ARE UNSURE, CALL 999 AND FOLLOW THE EMERGENCY CALL HANDLER’S INSTRUCTIONS.</div>
