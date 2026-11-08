@@ -1307,3 +1307,8 @@ footer small{
 .visual.has-photo{padding:0;background:#f7f5ed}
 .visual.has-photo:before,.visual.has-photo:after{display:none}
 .visual.has-photo img{position:relative;z-index:1;display:block;width:100%;height:auto;max-height:340px;object-fit:contain}
+
+
+/* Text-only header brand, with no decorative square mark. */
+.brand{gap:0}
+.brand-name{display:block}
