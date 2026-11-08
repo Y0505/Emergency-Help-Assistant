@@ -69,16 +69,16 @@ document.querySelectorAll("[data-guide]").forEach(b=>b.addEventListener("click",
   const panel=document.getElementById("speakPanel");
   const close=document.getElementById("speakClose");
   if(!toggle||!panel||!close)return;
-  const setOpen=open=>{
+  const setOpen=(open,restoreFocus=true)=>{
     panel.hidden=!open;
     toggle.setAttribute("aria-expanded",String(open));
     if(open)document.getElementById("getLocation")?.focus();
-    else toggle.focus();
+    else if(restoreFocus)toggle.focus();
   };
   toggle.addEventListener("click",()=>setOpen(panel.hidden));
   close.addEventListener("click",()=>setOpen(false));
   document.addEventListener("click",event=>{
-    if(!panel.hidden&&!panel.contains(event.target)&&!toggle.contains(event.target))setOpen(false);
+    if(!panel.hidden&&!panel.contains(event.target)&&!toggle.contains(event.target))setOpen(false,false);
   });
   document.addEventListener("keydown",event=>{
     if(event.key==="Escape"&&!panel.hidden)setOpen(false);
