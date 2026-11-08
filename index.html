@@ -15,21 +15,8 @@
 <header class="top">
   <a class="brand" href="#" aria-label="Emergency Help Assistant home"><span class="brand-mark"><i></i><i></i><i></i><i></i></span><span class="brand-name">emergency<span>help</span><small>FIRST AID, MADE CLEAR</small></span></a>
   <div class="topright">
-    <button class="speak-trigger" id="speakToggle" type="button" aria-expanded="false" aria-controls="speakPanel"><span aria-hidden="true">◖</span> Can't speak?</button>
     <button id="about">About <span aria-hidden="true">↗</span></button>
   </div>
-  <section class="speak-panel" id="speakPanel" aria-labelledby="speakPanelTitle" hidden>
-    <div class="speak-panel-head">
-      <div><span class="speak-panel-kicker">EMERGENCY SUPPORT</span><h2 id="speakPanelTitle">Let your phone speak.</h2></div>
-      <button class="speak-close" id="speakClose" type="button" aria-label="Close">×</button>
-    </div>
-    <p class="speak-panel-intro">After calling emergency services, get your GPS location and play it aloud.</p>
-    <button class="location-button location-button-primary" id="getLocation" type="button"><span aria-hidden="true">⌖</span> Get my location</button>
-    <button class="location-button location-button-secondary" id="speakLocation" type="button" disabled><span aria-hidden="true">▶</span> Read location aloud</button>
-    <p class="location-status" id="locationStatus" role="status" aria-live="polite">Your location is not accessed until you tap the button.</p>
-    <div class="location-result" id="locationResult" hidden><strong id="locationAddress"></strong><span id="locationCoordinates"></span><button id="copyLocation" type="button">Copy GPS coordinates</button></div>
-    <p class="speak-panel-caution">Keep your call on speaker. Your phone may not send website audio to the call, so check that the operator can hear it. This tool does not contact emergency services.</p>
-  </section>
 </header>
 <main id="home">
 <section class="hero hero-action">
@@ -40,8 +27,29 @@
   <aside class="hero-emergency" aria-label="Emergency calling information">
     <p>If it’s an emergency, call now</p>
     <a class="hero-call hero-call-999" href="tel:999"><strong>CALL 999 <span aria-hidden="true">↗</span></strong></a>
-    <a class="hero-call hero-call-112" href="tel:112"><strong>CALL 112 <span aria-hidden="true">↗</span></strong></a>
     <small>Use speakerphone and follow the call handler’s instructions.</small>
+    <button class="speak-trigger speak-action" id="speakToggle" type="button" aria-expanded="false" aria-controls="speakPanel">
+      <span class="speak-action-icon" aria-hidden="true">◖</span>
+      <span><strong>I can’t speak</strong><small>Let your phone read a message aloud</small></span>
+      <span class="speak-action-arrow" aria-hidden="true">→</span>
+    </button>
+    <section class="speak-panel" id="speakPanel" aria-labelledby="speakPanelTitle" hidden>
+      <div class="speak-panel-head">
+        <div><span class="speak-panel-kicker">VOICE ASSISTANCE · DEMO</span><h2 id="speakPanelTitle">Let your phone speak.</h2></div>
+        <button class="speak-close" id="speakClose" type="button" aria-label="Close">×</button>
+      </div>
+      <p class="speak-panel-intro">This demo shows how a location message could be prepared and read aloud after you call emergency services.</p>
+      <button class="location-button location-button-primary" id="getLocation" type="button"><span aria-hidden="true">⌖</span> Run demo location check</button>
+      <p class="location-status" id="locationStatus" role="status" aria-live="polite">Demo only. No real IP address or device location is collected.</p>
+      <div class="location-result" id="locationResult" hidden>
+        <span class="demo-label">SAMPLE IP ADDRESS</span>
+        <strong id="locationAddress">203.0.113.42</strong>
+        <span id="locationCoordinates">Reserved example IP · not your real IP or location</span>
+        <button class="location-button location-button-secondary" id="speakLocation" type="button" disabled><span aria-hidden="true">▶</span> Read demo message aloud</button>
+        <button class="copy-demo" id="copyLocation" type="button">Copy demo message</button>
+      </div>
+      <p class="speak-panel-caution">This is a simulated demo, not a real location service. An IP address cannot reliably identify an exact emergency address. Keep your call connected and follow the operator’s instructions.</p>
+    </section>
   </aside>
 </section>
 <section class="situations" id="situations">
@@ -70,6 +78,6 @@
 </main>
 <footer><a class="footerbrand" href="#">EH<span>/</span>A</a><span>AN INDEPENDENT DEMONSTRATION PROJECT</span><div><a href="#" id="sources">SOURCES & SAFETY</a><a href="#" id="disclaimer">IMPORTANT INFORMATION</a></div><small>FIRST-AID DEMO · 2026</small></footer>
 </div>
-<div class="overlay" id="modal" hidden><section class="dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><button id="close" aria-label="Close">×</button><div class="eyebrow"><span></span> IMPORTANT INFORMATION</div><h2 id="modalTitle">A guide, not a substitute for help.</h2><p>This is an independent demonstration prototype. It is not a substitute for emergency services, professional medical advice, or certified first-aid training. The content requires clinical review before public use.</p><p>If someone is in immediate danger, call 999 or 112. Follow the emergency call handler’s instructions.</p><a href="https://www.resus.org.uk/professional-library/2025-resuscitation-guidelines/first-aid-guidelines" target="_blank" rel="noreferrer">VIEW OFFICIAL FIRST AID GUIDELINES ↗</a></section></div>
+<div class="overlay" id="modal" hidden><section class="dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><button id="close" aria-label="Close">×</button><div class="eyebrow"><span></span> IMPORTANT INFORMATION</div><h2 id="modalTitle">A guide, not a substitute for help.</h2><p>This is an independent demonstration prototype. It is not a substitute for emergency services, professional medical advice, or certified first-aid training. The content requires clinical review before public use.</p><p>If someone is in immediate danger, call 999. Follow the emergency call handler’s instructions.</p><a href="https://www.resus.org.uk/professional-library/2025-resuscitation-guidelines/first-aid-guidelines" target="_blank" rel="noreferrer">VIEW OFFICIAL FIRST AID GUIDELINES ↗</a></section></div>
 <script src="app.js"></script>
 </body></html>
