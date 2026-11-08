@@ -431,3 +431,61 @@ footer small{
   footer a:not(.footerbrand){font-size:7px}
   footer small{margin-left:auto;font-size:7px}
 }
+
+
+/* Mobile-first safety reminder: compact, clear, and easy to scan. */
+.note{
+  display:flex;
+  align-items:flex-start;
+  gap:13px;
+  margin:0 0 30px;
+  padding:16px;
+  border:1px solid #dce8e2;
+  border-left:3px solid var(--teal-dark);
+  border-radius:10px;
+  background:#edf4f0;
+}
+.note-mark{
+  flex:none;
+  width:28px;
+  height:28px;
+  display:grid;
+  place-items:center;
+  border-radius:8px;
+  background:#d8eae1;
+  color:var(--teal-dark);
+  font:800 15px/1 var(--sans);
+}
+.note-copy{min-width:0}
+.note-copy strong{
+  display:block;
+  margin:1px 0 5px;
+  color:var(--navy);
+  font-size:12px;
+  line-height:1.4;
+}
+.note-copy p{
+  margin:0;
+  padding:0;
+  border:0;
+  color:#60777a;
+  font-size:10px;
+  line-height:1.65;
+}
+@media(min-width:700px){
+  .note{
+    align-items:center;
+    gap:16px;
+    margin-bottom:42px;
+    padding:18px 22px;
+  }
+  .note-mark{width:32px;height:32px}
+  .note-copy{
+    display:grid;
+    grid-template-columns:minmax(220px,.75fr) minmax(0,1fr);
+    align-items:center;
+    gap:22px;
+  }
+  .note-copy strong{margin:0;font-size:13px}
+  .note-copy p{font-size:11px;line-height:1.7}
+}
