@@ -76,6 +76,9 @@ document.querySelectorAll("[data-guide]").forEach(b=>b.addEventListener("click",
   const copyButton=document.getElementById("copyLocation");
   if(!toggle||!panel||!close||!checkButton||!speakButton||!status||!result||!copyButton)return;
 
+  // Mount the modal directly under body so ancestor stacking contexts cannot cover it.
+  if(panel.parentElement!==document.body)document.body.appendChild(panel);
+
   const demoMessage="This is a demonstration. I cannot speak. The sample IP address is 203.0.113.42. This is not my real location.";
   let demoReady=false;
   let pending=false;
