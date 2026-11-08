@@ -74,23 +74,9 @@ document.querySelectorAll("[data-guide]").forEach(b=>b.addEventListener("click",
   const copyButton=document.getElementById("copyLocation");
   if(!getButton||!speakButton||!status||!result||!addressNode||!coordinatesNode||!copyButton)return;
 
-  let spokenAddress="";
   let locationText="";
 
   function setStatus(message){status.textContent=message}
-  function makeAddress(data){
-    const a=data.address||{};
-    const street=[a.house_number,a.road||a.pedestrian||a.footway].filter(Boolean).join(" ");
-    const parts=[
-      street,
-      a.neighbourhood||a.suburb||a.quarter,
-      a.city||a.town||a.village||a.municipality,
-      a.state,
-      a.postcode,
-      a.country
-    ].filter((part,i,array)=>part&&array.indexOf(part)===i);
-    return parts.join(", ")||data.display_name||"";
-  }
 
   getButton.addEventListener("click",()=>{
     if(!("geolocation" in navigator)){
