@@ -19,27 +19,27 @@
 <main id="home">
 <section class="hero hero-action">
   <div class="hero-content">
-    <div class="eyebrow"><span></span> EMERGENCY ACTIONS</div>
     <h1>Someone needs<br><em>help now?</em></h1>
-    <p>Choose what is happening to open the right first-aid steps. If someone is in immediate danger, call emergency services first.</p>
-    <div class="hero-call-actions">
-      <a class="hero-call hero-call-999" href="tel:999"><span>UK EMERGENCY</span><strong>CALL 999 <b aria-hidden="true">↗</b></strong></a>
-      <a class="hero-call hero-call-112" href="tel:112"><span>ALTERNATIVE</span><strong>CALL 112 ↗</strong></a>
-    </div>
-    <p class="hero-reminder">Put your phone on speaker and follow the call handler’s instructions.</p>
+    <p>If someone is in immediate danger, call 999. For other situations, choose the closest first-aid guide below.</p>
   </div>
+  <aside class="hero-emergency" aria-label="Emergency calling information">
+    <p>If it’s an emergency, call now</p>
+    <a class="hero-call hero-call-999" href="tel:999"><strong>CALL 999 <span aria-hidden="true">↗</span></strong></a>
+    <a class="hero-call hero-call-112" href="tel:112"><strong>CALL 112 <span aria-hidden="true">↗</span></strong></a>
+    <small>Use speakerphone and follow the call handler’s instructions.</small>
+  </aside>
 </section>
 <section class="situations" id="situations">
-  <div class="sectionhead"><div><div class="eyebrow"><span></span> CHOOSE A SITUATION</div><h2>What’s happening?</h2><p>Find the closest match. We’ll guide you through the next steps.</p></div><div class="section-count"><b>08</b><span>QUICK<br>GUIDES</span></div></div>
+  <div class="sectionhead"><div><h2>What’s happening?</h2><p>Select the situation that best matches what you can see.</p></div></div>
   <div class="grid">
-    <button class="card" data-guide="choking"><span class="number">01 <i> / AIRWAY</i></span><div class="card-image"><img src="assets/images/choking.jpg" alt="Adult choking"></div><span class="title">Adult choking <b>↗</b></span><span class="desc">When someone cannot breathe, speak or cough effectively.</span><span class="cardfoot"><i></i> QUICK GUIDE <b>OPEN GUIDE →</b></span></button>
-    <button class="card" data-guide="bleeding"><span class="number">02 <i> / INJURY</i></span><div class="card-image"><img src="assets/images/bleeding.jpg" alt="Severe bleeding"></div><span class="title">Severe bleeding <b>↗</b></span><span class="desc">Heavy bleeding that needs immediate action.</span><span class="cardfoot"><i></i> QUICK GUIDE <b>OPEN GUIDE →</b></span></button>
-    <button class="card" data-guide="cpr"><span class="number">03 <i> / BREATHING</i></span><div class="card-image"><img src="assets/images/cpr.jpg" alt="Unresponsive person and CPR"></div><span class="title">Unresponsive / CPR <b>↗</b></span><span class="desc">Someone is unresponsive or not breathing normally.</span><span class="cardfoot"><i></i> QUICK GUIDE <b>OPEN GUIDE →</b></span></button>
-    <button class="card" data-guide="stroke"><span class="number">04 <i> / WARNING SIGNS</i></span><div class="card-image"><img src="assets/images/stroke.jpg" alt="Possible stroke FAST signs"></div><span class="title">Possible stroke <b>↗</b></span><span class="desc">Sudden changes to the face, arms or speech.</span><span class="cardfoot"><i></i> QUICK GUIDE <b>OPEN GUIDE →</b></span></button>
-    <button class="card" data-guide="burns"><span class="number">05 <i> / SKIN INJURY</i></span><div class="card-image"><img src="assets/images/burns.jpg" alt="Burns"></div><span class="title">Burns <b>↗</b></span><span class="desc">A burn or scald that needs first-aid attention.</span><span class="cardfoot"><i></i> QUICK GUIDE <b>OPEN GUIDE →</b></span></button>
-    <button class="card" data-guide="seizure"><span class="number">06 <i> / SEIZURE</i></span><div class="card-image"><img src="assets/images/seizure.jpg" alt="Seizure"></div><span class="title">Seizure <b>↗</b></span><span class="desc">Someone is having a seizure or has collapsed.</span><span class="cardfoot"><i></i> QUICK GUIDE <b>OPEN GUIDE →</b></span></button>
-    <button class="card" data-guide="allergy"><span class="number">07 <i> / ALLERGIC REACTION</i></span><div class="card-image"><img src="assets/images/allergy.jpg" alt="Severe allergic reaction"></div><span class="title">Severe allergic reaction <b>↗</b></span><span class="desc">Possible anaphylaxis or a rapidly worsening reaction.</span><span class="cardfoot"><i></i> QUICK GUIDE <b>OPEN GUIDE →</b></span></button>
-    <button class="card" data-guide="fracture"><span class="number">08 <i> / INJURY</i></span><div class="card-image"><img src="assets/images/fracture.jpg" alt="Suspected fracture"></div><span class="title">Suspected fracture <b>↗</b></span><span class="desc">A possible broken bone after an injury.</span><span class="cardfoot"><i></i> QUICK GUIDE <b>OPEN GUIDE →</b></span></button>
+    <button class="card" data-guide="choking"><div class="card-image"><img src="assets/images/choking.jpg" alt="Adult choking"></div><span class="title">Adult choking <b>↗</b></span><span class="desc">When someone cannot breathe, speak or cough effectively.</span></button>
+    <button class="card" data-guide="bleeding"><div class="card-image"><img src="assets/images/bleeding.jpg" alt="Severe bleeding"></div><span class="title">Severe bleeding <b>↗</b></span><span class="desc">Heavy bleeding that needs immediate action.</span></button>
+    <button class="card" data-guide="cpr"><div class="card-image"><img src="assets/images/cpr.jpg" alt="Unresponsive person and CPR"></div><span class="title">Unresponsive / CPR <b>↗</b></span><span class="desc">Someone is unresponsive or not breathing normally.</span></button>
+    <button class="card" data-guide="stroke"><div class="card-image"><img src="assets/images/stroke.jpg" alt="Possible stroke FAST signs"></div><span class="title">Possible stroke <b>↗</b></span><span class="desc">Sudden changes to the face, arms or speech.</span></button>
+    <button class="card" data-guide="burns"><div class="card-image"><img src="assets/images/burns.jpg" alt="Burns"></div><span class="title">Burns <b>↗</b></span><span class="desc">A burn or scald that needs first-aid attention.</span></button>
+    <button class="card" data-guide="seizure"><div class="card-image"><img src="assets/images/seizure.jpg" alt="Seizure"></div><span class="title">Seizure <b>↗</b></span><span class="desc">Someone is having a seizure or has collapsed.</span></button>
+    <button class="card" data-guide="allergy"><div class="card-image"><img src="assets/images/allergy.jpg" alt="Severe allergic reaction"></div><span class="title">Severe allergic reaction <b>↗</b></span><span class="desc">Possible anaphylaxis or a rapidly worsening reaction.</span></button>
+    <button class="card" data-guide="fracture"><div class="card-image"><img src="assets/images/fracture.jpg" alt="Suspected fracture"></div><span class="title">Suspected fracture <b>↗</b></span><span class="desc">A possible broken bone after an injury.</span></button>
   </div>
   <div class="footnote"><span>✳</span> NOT SURE? CALL 999 AND DESCRIBE WHAT YOU CAN SEE.</div>
 </section>
