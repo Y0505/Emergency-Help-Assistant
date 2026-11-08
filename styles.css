@@ -1301,3 +1301,9 @@ footer small{
   .guidewarning p strong{font-size:12px}
   .guidewarning p span{font-size:11px;line-height:1.65}
 }
+
+
+/* Uploaded step illustration: use the artwork without the decorative SVG rings. */
+.visual.has-photo{padding:0;background:#f7f5ed}
+.visual.has-photo:before,.visual.has-photo:after{display:none}
+.visual.has-photo img{position:relative;z-index:1;display:block;width:100%;height:auto;max-height:340px;object-fit:contain}
