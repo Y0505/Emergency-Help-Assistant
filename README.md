@@ -18,7 +18,7 @@ An independent, visual-first first-aid demonstration designed to help people fin
 Open index.html in a modern browser, or serve this folder with any static file server.
 
 ## Technology
-HTML5, CSS3, vanilla JavaScript, and original inline SVG. No JavaScript or CSS framework dependencies. Typography uses an optional external Google Fonts stylesheet with local fallbacks.
+HTML5, CSS3, vanilla JavaScript, and original inline SVG. No JavaScript or CSS framework dependencies. Typography uses system font stacks; no external font service is required.
 
 ## Medical content
 The initial wording is a simplified paraphrase informed by the official references in SOURCES.md. It is not a complete clinical protocol. Medical instructions, branching, age scope, accessibility, and regional emergency details must be reviewed and tested by qualified professionals before deployment.
@@ -29,4 +29,4 @@ This prototype is UK-oriented. Emergency numbers and first-aid protocols vary by
 The interface composition, HTML, CSS, JavaScript, and SVG illustrations were created specifically for this project. No third-party UI framework, icon pack, downloaded stock image, or copied template is used. The general subject of first-aid guidance is not claimed as a novel or exclusive idea.
 
 ## Status
-Early independent prototype — not clinically reviewed or production ready.
+Visual refresh in progress — still an independent prototype, not clinically reviewed or production ready.
