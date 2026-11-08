@@ -62,3 +62,108 @@ function svg(type){return '<svg viewBox="0 0 360 260" role="img" aria-label="Ori
 function openGuide(k){active=k;index=0;home.hidden=true;guideView.hidden=false;render();window.scrollTo({top:0,behavior:"smooth"})}
 function render(){const g=data[active],s=g.steps[index];$("guideTitle").textContent=g.title;$("guideIntro").textContent=g.intro;$("guideSource").textContent="SOURCE: "+g.source;$("guideid").textContent="GUIDE / "+String(Object.keys(data).indexOf(active)+1).padStart(2,"0");$("stepNum").textContent=String(index+1).padStart(2,"0");$("category").textContent=s[1];$("stepLabel").textContent=s[0];$("heading").textContent=s[2];$("description").textContent=s[3];$("visual").innerHTML=svg(s[4]);$("progress").style.width=((index+1)/g.steps.length*100)+"%";$("stepCount").textContent="STEP "+String(index+1).padStart(2,"0");$("total").textContent="OF "+String(g.steps.length).padStart(2,"0");$("prev").disabled=index===0;const next=$("next");next.hidden=!!s[5];next.textContent=index===g.steps.length-1?"RESTART GUIDE ↻":"NEXT STEP →";const box=$("choices");box.innerHTML="";if(s[5])s[5].forEach(([label,v])=>{let b=document.createElement("button");b.textContent=label;if(v==="severe"||v==="abnormal")b.className="danger";b.onclick=()=>{index=active==="choking"?(v==="mild"?1:v==="monitor"?0:2):(v==="normal"?4:v==="abnormal"?5:4);render()};box.appendChild(b)});else if(s[6]){let n=document.createElement("p");n.textContent=s[6];n.style.cssText="font-size:10px;line-height:1.7;color:#6f7d72;background:#f1f3ed;padding:12px";box.appendChild(n)}}
 document.querySelectorAll("[data-guide]").forEach(b=>b.addEventListener("click",()=>openGuide(b.dataset.guide)));$("back").onclick=()=>{guideView.hidden=true;home.hidden=false;window.scrollTo({top:0,behavior:"smooth"})};$("prev").onclick=()=>{if(index>0){index--;render()}};$("next").onclick=()=>{if(index===data[active].steps.length-1)index=0;else index++;render()};const modal=$("modal");function show(){modal.hidden=false;$("close").focus()}function hide(){modal.hidden=true}$("about").onclick=show;$("disclaimer").onclick=e=>{e.preventDefault();show()};$("sources").onclick=e=>{e.preventDefault();show()};$("close").onclick=hide;modal.onclick=e=>{if(e.target===modal)hide()};document.addEventListener("keydown",e=>{if(e.key==="Escape")hide()});
+
+/* Optional emergency location reader. Location is requested only after a user tap. */
+(()=>{
+  const getButton=document.getElementById("getLocation");
+  const speakButton=document.getElementById("speakLocation");
+  const status=document.getElementById("locationStatus");
+  const result=document.getElementById("locationResult");
+  const addressNode=document.getElementById("locationAddress");
+  const coordinatesNode=document.getElementById("locationCoordinates");
+  const copyButton=document.getElementById("copyLocation");
+  if(!getButton||!speakButton||!status||!result||!addressNode||!coordinatesNode||!copyButton)return;
+
+  let spokenAddress="";
+  let locationText="";
+
+  function setStatus(message){status.textContent=message}
+  function makeAddress(data){
+    const a=data.address||{};
+    const street=[a.house_number,a.road||a.pedestrian||a.footway].filter(Boolean).join(" ");
+    const parts=[
+      street,
+      a.neighbourhood||a.suburb||a.quarter,
+      a.city||a.town||a.village||a.municipality,
+      a.state,
+      a.postcode,
+      a.country
+    ].filter((part,i,array)=>part&&array.indexOf(part)===i);
+    return parts.join(", ")||data.display_name||"";
+  }
+
+  getButton.addEventListener("click",()=>{
+    if(!("geolocation" in navigator)){
+      setStatus("This browser cannot access device location. You can still call emergency services.");
+      return;
+    }
+    getButton.disabled=true;
+    speakButton.disabled=true;
+    result.hidden=true;
+    setStatus("Requesting your location… Allow location access if your browser asks.");
+    navigator.geolocation.getCurrentPosition(async position=>{
+      const lat=position.coords.latitude;
+      const lon=position.coords.longitude;
+      const accuracy=Math.round(position.coords.accuracy);
+      const coords=lat.toFixed(6)+", "+lon.toFixed(6);
+      coordinatesNode.textContent="GPS: "+coords+" · Accuracy: about "+accuracy+" m";
+      setStatus("Location found. Looking up the nearest address…");
+      try{
+        const url="https://nominatim.openstreetmap.org/reverse?format=jsonv2&addressdetails=1&zoom=18&lat="+encodeURIComponent(lat)+"&lon="+encodeURIComponent(lon);
+        const response=await fetch(url,{headers:{"Accept":"application/json","Accept-Language":"en"}});
+        if(!response.ok)throw new Error("Address lookup unavailable");
+        const data=await response.json();
+        spokenAddress=makeAddress(data);
+        if(!spokenAddress)throw new Error("No readable address found");
+        locationText=spokenAddress+" . GPS coordinates: "+coords;
+        addressNode.textContent=spokenAddress;
+        result.hidden=false;
+        speakButton.disabled=false;
+        setStatus("Address ready. Put your call on speaker, then tap “Read address aloud”.");
+      }catch(error){
+        spokenAddress="";
+        locationText="GPS coordinates: "+coords;
+        addressNode.textContent="A street address could not be found. Use these GPS coordinates instead.";
+        result.hidden=false;
+        speakButton.disabled=false;
+        setStatus("Address lookup failed. You can still read the GPS coordinates aloud.");
+      }
+      getButton.disabled=false;
+    },error=>{
+      getButton.disabled=false;
+      const messages={
+        1:"Location permission was denied. You can enable it in your browser settings and try again.",
+        2:"Your location is currently unavailable. Try again or use another way to share your location.",
+        3:"Getting your location took too long. Please try again."
+      };
+      setStatus(messages[error.code]||"Could not get your location. Please try again.");
+    },{enableHighAccuracy:true,timeout:15000,maximumAge:0});
+  });
+
+  speakButton.addEventListener("click",()=>{
+    if(!("speechSynthesis" in window)||!("SpeechSynthesisUtterance" in window)){
+      setStatus("Speech playback is not supported by this browser. Please read the address or coordinates shown on screen.");
+      return;
+    }
+    if(!locationText)return;
+    window.speechSynthesis.cancel();
+    const utterance=new SpeechSynthesisUtterance(locationText);
+    utterance.lang="en";
+    utterance.rate=.88;
+    utterance.pitch=1;
+    utterance.onstart=()=>setStatus("Reading your location aloud… Check that the emergency operator can hear it.");
+    utterance.onend=()=>setStatus("Finished reading. Tap the button to play it again if needed.");
+    utterance.onerror=()=>setStatus("Audio playback did not work. Please read the address or coordinates shown on screen.");
+    window.speechSynthesis.speak(utterance);
+  });
+
+  copyButton.addEventListener("click",async()=>{
+    if(!locationText)return;
+    try{
+      await navigator.clipboard.writeText(locationText);
+      setStatus("Address and GPS coordinates copied.");
+    }catch(error){
+      setStatus("Copy is unavailable in this browser. You can read the details shown above.");
+    }
+  });
+})();
