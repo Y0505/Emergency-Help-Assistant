@@ -63,18 +63,29 @@ function openGuide(k){active=k;index=0;home.hidden=true;guideView.hidden=false;r
 function render(){const g=data[active],s=g.steps[index];$("guideTitle").textContent=g.title;$("guideIntro").textContent=g.intro;$("guideSource").textContent="SOURCE: "+g.source;$("guideid").textContent="GUIDE / "+String(Object.keys(data).indexOf(active)+1).padStart(2,"0");$("stepNum").textContent=String(index+1).padStart(2,"0");$("category").textContent=s[1];$("stepLabel").textContent=s[0];$("heading").textContent=s[2];$("description").textContent=s[3];$("visual").innerHTML=svg(s[4]);$("progress").style.width=((index+1)/g.steps.length*100)+"%";$("stepCount").textContent="STEP "+String(index+1).padStart(2,"0");$("total").textContent="OF "+String(g.steps.length).padStart(2,"0");$("prev").disabled=index===0;const next=$("next");next.hidden=!!s[5];next.textContent=index===g.steps.length-1?"RESTART GUIDE ↻":"NEXT STEP →";const box=$("choices");box.innerHTML="";if(s[5])s[5].forEach(([label,v])=>{let b=document.createElement("button");b.textContent=label;if(v==="severe"||v==="abnormal")b.className="danger";b.onclick=()=>{index=active==="choking"?(v==="mild"?1:v==="monitor"?0:2):(v==="normal"?4:v==="abnormal"?5:4);render()};box.appendChild(b)});else if(s[6]){let n=document.createElement("p");n.textContent=s[6];n.style.cssText="font-size:10px;line-height:1.7;color:#6f7d72;background:#f1f3ed;padding:12px";box.appendChild(n)}}
 document.querySelectorAll("[data-guide]").forEach(b=>b.addEventListener("click",()=>openGuide(b.dataset.guide)));$("back").onclick=()=>{guideView.hidden=true;home.hidden=false;window.scrollTo({top:0,behavior:"smooth"})};$("prev").onclick=()=>{if(index>0){index--;render()}};$("next").onclick=()=>{if(index===data[active].steps.length-1)index=0;else index++;render()};const modal=$("modal");function show(){modal.hidden=false;$("close").focus()}function hide(){modal.hidden=true}$("about").onclick=show;$("disclaimer").onclick=e=>{e.preventDefault();show()};$("sources").onclick=e=>{e.preventDefault();show()};$("close").onclick=hide;modal.onclick=e=>{if(e.target===modal)hide()};document.addEventListener("keydown",e=>{if(e.key==="Escape")hide()});
 
-/* Header-based emergency speech assistant. */
+/* Simulated IP/location flow for the visual demo.
+   No real IP lookup, geolocation permission, or network request is made. */
 (()=>{
   const toggle=document.getElementById("speakToggle");
   const panel=document.getElementById("speakPanel");
   const close=document.getElementById("speakClose");
-  if(!toggle||!panel||!close)return;
-  const setOpen=(open,restoreFocus=true)=>{
+  const checkButton=document.getElementById("getLocation");
+  const speakButton=document.getElementById("speakLocation");
+  const status=document.getElementById("locationStatus");
+  const result=document.getElementById("locationResult");
+  const copyButton=document.getElementById("copyLocation");
+  if(!toggle||!panel||!close||!checkButton||!speakButton||!status||!result||!copyButton)return;
+
+  const demoMessage="This is a demonstration. I cannot speak. The sample IP address is 203.0.113.42. This is not my real location.";
+  let demoReady=false;
+  let pending=false;
+
+  function setOpen(open,restoreFocus=true){
     panel.hidden=!open;
     toggle.setAttribute("aria-expanded",String(open));
-    if(open)document.getElementById("getLocation")?.focus();
+    if(open)checkButton.focus();
     else if(restoreFocus)toggle.focus();
-  };
+  }
   toggle.addEventListener("click",()=>setOpen(panel.hidden));
   close.addEventListener("click",()=>setOpen(false));
   document.addEventListener("click",event=>{
@@ -83,80 +94,51 @@ document.querySelectorAll("[data-guide]").forEach(b=>b.addEventListener("click",
   document.addEventListener("keydown",event=>{
     if(event.key==="Escape"&&!panel.hidden)setOpen(false);
   });
-})();
 
-/* Optional emergency location reader. Location is requested only after a user tap. */
-(()=>{
-  const getButton=document.getElementById("getLocation");
-  const speakButton=document.getElementById("speakLocation");
-  const status=document.getElementById("locationStatus");
-  const result=document.getElementById("locationResult");
-  const addressNode=document.getElementById("locationAddress");
-  const coordinatesNode=document.getElementById("locationCoordinates");
-  const copyButton=document.getElementById("copyLocation");
-  if(!getButton||!speakButton||!status||!result||!addressNode||!coordinatesNode||!copyButton)return;
-
-  let locationText="";
-
-  function setStatus(message){status.textContent=message}
-
-  getButton.addEventListener("click",()=>{
-    if(!("geolocation" in navigator)){
-      setStatus("This browser cannot access device location. You can still call emergency services.");
-      return;
-    }
-    getButton.disabled=true;
-    speakButton.disabled=true;
+  checkButton.addEventListener("click",()=>{
+    if(pending)return;
+    pending=true;
+    demoReady=false;
     result.hidden=true;
-    setStatus("Requesting your location… Allow location access if your browser asks.");
-    navigator.geolocation.getCurrentPosition(async position=>{
-      const lat=position.coords.latitude;
-      const lon=position.coords.longitude;
-      const accuracy=Math.round(position.coords.accuracy);
-      const coords=lat.toFixed(6)+", "+lon.toFixed(6);
-      coordinatesNode.textContent="GPS: "+coords+" · Accuracy: about "+accuracy+" m";
-      locationText="My GPS coordinates are latitude "+lat.toFixed(6)+" and longitude "+lon.toFixed(6)+". The estimated accuracy is "+accuracy+" metres.";
-      addressNode.textContent="GPS location ready";
-      coordinatesNode.textContent="Latitude: "+lat.toFixed(6)+" · Longitude: "+lon.toFixed(6)+" · Accuracy: about "+accuracy+" m";
+    speakButton.disabled=true;
+    checkButton.disabled=true;
+    checkButton.textContent="Checking demo connection…";
+    status.textContent="Simulating a location check. This is sample data only.";
+    window.setTimeout(()=>{
       result.hidden=false;
+      demoReady=true;
+      pending=false;
+      checkButton.disabled=false;
+      checkButton.textContent="Run demo again";
       speakButton.disabled=false;
-      setStatus("Your GPS location is ready. Put your call on speaker, then tap “Read location aloud”.");
-      getButton.disabled=false;
-    },error=>{
-      getButton.disabled=false;
-      const messages={
-        1:"Location permission was denied. You can enable it in your browser settings and try again.",
-        2:"Your location is currently unavailable. Try again or use another way to share your location.",
-        3:"Getting your location took too long. Please try again."
-      };
-      setStatus(messages[error.code]||"Could not get your location. Please try again.");
-    },{enableHighAccuracy:true,timeout:15000,maximumAge:0});
+      status.textContent="Demo complete. A reserved example IP is shown below — no real data was requested.";
+    },900);
   });
 
   speakButton.addEventListener("click",()=>{
+    if(!demoReady)return;
     if(!("speechSynthesis" in window)||!("SpeechSynthesisUtterance" in window)){
-      setStatus("Speech playback is not supported by this browser. Please read the address or coordinates shown on screen.");
+      status.textContent="Speech playback is not supported in this browser. The demo message is still shown above.";
       return;
     }
-    if(!locationText)return;
     window.speechSynthesis.cancel();
-    const utterance=new SpeechSynthesisUtterance(locationText);
+    const utterance=new SpeechSynthesisUtterance(demoMessage);
     utterance.lang="en";
     utterance.rate=.88;
     utterance.pitch=1;
-    utterance.onstart=()=>setStatus("Reading your location aloud… Check that the emergency operator can hear it.");
-    utterance.onend=()=>setStatus("Finished reading. Tap the button to play it again if needed.");
-    utterance.onerror=()=>setStatus("Audio playback did not work. Please read the address or coordinates shown on screen.");
+    utterance.onstart=()=>status.textContent="Playing the sample message. In a real call, check whether the operator can hear your phone’s audio.";
+    utterance.onend=()=>status.textContent="Demo message finished. You can play it again.";
+    utterance.onerror=()=>status.textContent="Audio playback did not work. The sample message is still available on screen.";
     window.speechSynthesis.speak(utterance);
   });
 
   copyButton.addEventListener("click",async()=>{
-    if(!locationText)return;
+    if(!demoReady)return;
     try{
-      await navigator.clipboard.writeText(locationText);
-      setStatus("GPS coordinates copied.");
+      await navigator.clipboard.writeText(demoMessage);
+      status.textContent="Demo message copied.";
     }catch(error){
-      setStatus("Copy is unavailable in this browser. You can read the details shown above.");
+      status.textContent="Copy is unavailable in this browser. The sample message is shown through the read-aloud button.";
     }
   });
 })();
