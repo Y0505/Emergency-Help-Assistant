@@ -489,3 +489,168 @@ footer small{
   .note-copy strong{margin:0;font-size:13px}
   .note-copy p{font-size:11px;line-height:1.7}
 }
+
+
+/* Clearer safety notice with stronger contrast and mobile-first hierarchy. */
+.note{
+  position:relative;
+  display:flex;
+  align-items:flex-start;
+  gap:13px;
+  overflow:hidden;
+  margin:0 0 30px;
+  padding:17px 16px;
+  border:1px solid #b9d8ca;
+  border-left:4px solid #087d70;
+  border-radius:12px;
+  background:#e3f1e9;
+  box-shadow:0 8px 22px #173b320b;
+}
+.note:after{
+  content:"";
+  position:absolute;
+  width:110px;height:110px;
+  right:-48px;top:-56px;
+  border:1px solid #8ebdaa55;
+  border-radius:50%;
+  pointer-events:none;
+}
+.note-mark{
+  flex:none;
+  width:31px;height:31px;
+  display:grid;place-items:center;
+  border-radius:9px;
+  background:#087d70;
+  color:#fff;
+  font:900 16px/1 var(--sans);
+  box-shadow:0 4px 10px #087d7030;
+}
+.note-copy{position:relative;z-index:1;min-width:0}
+.note-copy strong{
+  display:block;
+  margin:0 0 6px;
+  color:#102f2b;
+  font-size:14px;
+  line-height:1.35;
+  font-weight:850;
+  letter-spacing:-.2px;
+}
+.note-copy p{
+  margin:0;
+  padding:0;
+  border:0;
+  color:#294f48;
+  font-size:12px;
+  font-weight:550;
+  line-height:1.65;
+}
+@media(min-width:700px){
+  .note{align-items:center;gap:17px;padding:20px 23px;margin-bottom:42px}
+  .note-mark{width:35px;height:35px}
+  .note-copy{display:grid;grid-template-columns:minmax(220px,.7fr) minmax(0,1fr);align-items:center;gap:24px}
+  .note-copy strong{margin:0;font-size:15px}
+  .note-copy p{font-size:12px;line-height:1.7}
+}
+
+/* Subtle depth and motion: decorative only, never between users and the guides. */
+.hero-action{
+  isolation:isolate;
+  perspective:1000px;
+}
+.hero-action:after{
+  content:"";
+  position:absolute;
+  z-index:0;
+  width:360px;height:360px;
+  right:10%;top:50%;
+  border:1px solid #6ed4b51c;
+  border-radius:50%;
+  box-shadow:0 0 0 28px #6ed4b509,0 0 0 58px #6ed4b506;
+  transform:translateY(-50%);
+  pointer-events:none;
+  animation:hero-orbit 18s linear infinite;
+}
+.hero-emergency{
+  transform-style:preserve-3d;
+  transition:transform .35s ease,box-shadow .35s ease;
+  animation:panel-arrive .7s cubic-bezier(.2,.8,.2,1) both;
+}
+.hero-emergency:before{
+  content:"";
+  position:absolute;
+  inset:8px;
+  border:1px solid #ffffff12;
+  border-radius:11px;
+  pointer-events:none;
+  transform:translateZ(-1px);
+}
+.hero-call{
+  transition:transform .22s ease,background .22s ease,box-shadow .22s ease;
+}
+.hero-call:active{transform:scale(.985)}
+.card{
+  transform-style:preserve-3d;
+  backface-visibility:hidden;
+  transition:transform .28s cubic-bezier(.2,.75,.25,1),box-shadow .28s ease,border-color .28s ease;
+}
+.card-image{transform:translateZ(0);overflow:hidden}
+.card-image img{will-change:transform}
+.card .title,.card .desc{transform:translateZ(7px)}
+.step{
+  animation:step-arrive .32s ease both;
+}
+.visual{
+  perspective:800px;
+}
+.visual svg{
+  transform:translateZ(12px);
+  transform-origin:50% 60%;
+  animation:visual-settle .55s cubic-bezier(.2,.8,.2,1) both;
+}
+@keyframes hero-orbit{
+  from{transform:translateY(-50%) rotate(0deg)}
+  to{transform:translateY(-50%) rotate(360deg)}
+}
+@keyframes panel-arrive{
+  from{opacity:0;transform:translateY(12px) rotateX(3deg)}
+  to{opacity:1;transform:translateY(0) rotateX(0)}
+}
+@keyframes step-arrive{
+  from{opacity:.65;transform:translateY(7px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes visual-settle{
+  from{opacity:.65;transform:translateY(8px) rotateX(5deg) scale(.98)}
+  to{opacity:1;transform:translateY(0) rotateX(0) scale(1)}
+}
+@media(hover:hover) and (min-width:901px){
+  .card:hover,.card:focus-visible{
+    transform:perspective(900px) translateY(-5px) rotateX(1.4deg);
+  }
+  .hero-emergency:hover{
+    transform:perspective(1000px) rotateY(-1.2deg) translateY(-2px);
+    box-shadow:0 30px 78px #07151c66;
+  }
+}
+@media(max-width:620px){
+  .note{
+    gap:11px;
+    padding:15px 13px;
+    margin-bottom:26px;
+    border-radius:10px;
+  }
+  .note-mark{width:29px;height:29px;border-radius:8px}
+  .note-copy strong{font-size:13px;margin-bottom:5px}
+  .note-copy p{font-size:11px;line-height:1.6}
+  .hero-action:after{
+    width:220px;height:220px;
+    right:-95px;top:45%;
+    opacity:.65;
+  }
+  .hero-emergency{animation:none}
+  .visual svg{animation:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-action:after,.hero-emergency,.step,.visual svg{animation:none!important}
+  .card,.hero-emergency,.hero-call{transition:none!important}
+}
