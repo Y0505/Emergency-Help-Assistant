@@ -1227,3 +1227,77 @@ footer small{
  .source-card{margin-top:9px;padding:8px 9px}
  .source-card .source{font-size:6px}
 }
+
+
+/* Guide page: progress belongs directly above the step illustration. */
+.step-visual-column{min-width:0;display:flex;flex-direction:column;gap:13px}
+.step-progress{padding:0 1px}
+.step-progress-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:9px}
+.step-progress-heading>span{color:#526b60;font:800 9px var(--mono);letter-spacing:.8px}
+.step-progress-heading strong{display:flex;align-items:center;gap:5px;color:#244f3e;font:800 10px var(--mono);white-space:nowrap}
+.step-progress-heading strong i{font-style:normal;color:#9aaba1}
+.step-progress .progress{height:5px;margin:0;background:#e7eee9;border-radius:20px;overflow:hidden}
+.step-progress .progress i{display:block;height:100%;background:linear-gradient(90deg,#287957,#60b78a);border-radius:20px;transition:width .25s}
+.step-visual-column .visual{width:100%;min-height:250px}
+.callbox{
+  display:block!important;
+  margin-top:22px!important;
+  padding:17px!important;
+  border:1px solid #f0d7d2!important;
+  border-radius:13px!important;
+  background:linear-gradient(145deg,#fffaf8 0%,#fff0ed 100%)!important;
+}
+.callbox-content{width:100%;min-width:0}
+.callbox-heading{display:flex;align-items:center;gap:10px;margin-bottom:9px}
+.callbox-icon{
+  width:31px!important;height:31px!important;flex:none;
+  border-radius:10px!important;background:#e95149!important;
+  color:#fff!important;font-size:17px!important;
+  box-shadow:0 5px 13px rgba(217,71,64,.2)!important;
+}
+.callbox-heading>strong{color:#482d2a;font-size:15px;letter-spacing:-.35px}
+.callbox-content>p{
+  margin:0 0 14px!important;color:#725c58!important;
+  font-size:11px!important;line-height:1.7!important;
+}
+.callbox-content>a{
+  min-height:46px!important;padding:10px 13px!important;
+  border-radius:9px!important;background:#df4d45!important;
+  box-shadow:0 7px 16px rgba(217,76,67,.18)!important;
+}
+.callbox-content>a>span{font-size:10px!important;font-weight:750}
+.callbox-content>a>b{font-size:16px!important}
+.callbox-content>a:hover{background:#c94038!important}
+.guidewarning{
+  display:flex;align-items:center;gap:13px;
+  margin:0 0 34px;padding:16px 18px;
+  border:1px solid #f0d7d2;border-radius:11px;
+  background:#fff8f6;color:#633d38;
+  font:500 13px/1.65 var(--sans);
+  letter-spacing:0;
+}
+.guidewarning-icon{
+  flex:none;width:30px;height:30px;display:grid;place-items:center;
+  border-radius:9px;background:#fce4df;color:#c8463f;
+  font-size:17px;font-weight:850;
+}
+.guidewarning p{display:grid;gap:2px;margin:0}
+.guidewarning p strong{color:#713b35;font-size:13px;font-weight:800}
+.guidewarning p span{color:#755e59;font-size:12px;line-height:1.6}
+@media(max-width:900px){
+  .step-visual-column .visual{min-height:210px}
+}
+@media(max-width:620px){
+  .step-visual-column{gap:10px}
+  .step-progress-heading>span{font-size:8px}
+  .step-progress-heading strong{font-size:9px}
+  .step-visual-column .visual{min-height:195px}
+  .callbox{margin-top:12px!important;padding:13px!important}
+  .callbox-heading>strong{font-size:14px}
+  .callbox-content>p{font-size:10px!important}
+  .callbox-content>a{min-height:43px!important}
+  .guidewarning{align-items:flex-start;gap:10px;margin-bottom:24px;padding:13px}
+  .guidewarning-icon{width:27px;height:27px}
+  .guidewarning p strong{font-size:12px}
+  .guidewarning p span{font-size:11px;line-height:1.65}
+}
