@@ -107,27 +107,12 @@ document.querySelectorAll("[data-guide]").forEach(b=>b.addEventListener("click",
       const accuracy=Math.round(position.coords.accuracy);
       const coords=lat.toFixed(6)+", "+lon.toFixed(6);
       coordinatesNode.textContent="GPS: "+coords+" · Accuracy: about "+accuracy+" m";
-      setStatus("Location found. Looking up the nearest address…");
-      try{
-        const url="https://nominatim.openstreetmap.org/reverse?format=jsonv2&addressdetails=1&zoom=18&lat="+encodeURIComponent(lat)+"&lon="+encodeURIComponent(lon);
-        const response=await fetch(url,{headers:{"Accept":"application/json","Accept-Language":"en"}});
-        if(!response.ok)throw new Error("Address lookup unavailable");
-        const data=await response.json();
-        spokenAddress=makeAddress(data);
-        if(!spokenAddress)throw new Error("No readable address found");
-        locationText=spokenAddress+" . GPS coordinates: "+coords;
-        addressNode.textContent=spokenAddress;
-        result.hidden=false;
-        speakButton.disabled=false;
-        setStatus("Address ready. Put your call on speaker, then tap “Read address aloud”.");
-      }catch(error){
-        spokenAddress="";
-        locationText="GPS coordinates: "+coords;
-        addressNode.textContent="A street address could not be found. Use these GPS coordinates instead.";
-        result.hidden=false;
-        speakButton.disabled=false;
-        setStatus("Address lookup failed. You can still read the GPS coordinates aloud.");
-      }
+      locationText="My GPS coordinates are latitude "+lat.toFixed(6)+" and longitude "+lon.toFixed(6)+". The estimated accuracy is "+accuracy+" metres.";
+      addressNode.textContent="GPS location ready";
+      coordinatesNode.textContent="Latitude: "+lat.toFixed(6)+" · Longitude: "+lon.toFixed(6)+" · Accuracy: about "+accuracy+" m";
+      result.hidden=false;
+      speakButton.disabled=false;
+      setStatus("Your GPS location is ready. Put your call on speaker, then tap “Read location aloud”.");
       getButton.disabled=false;
     },error=>{
       getButton.disabled=false;
@@ -161,7 +146,7 @@ document.querySelectorAll("[data-guide]").forEach(b=>b.addEventListener("click",
     if(!locationText)return;
     try{
       await navigator.clipboard.writeText(locationText);
-      setStatus("Address and GPS coordinates copied.");
+      setStatus("GPS coordinates copied.");
     }catch(error){
       setStatus("Copy is unavailable in this browser. You can read the details shown above.");
     }
