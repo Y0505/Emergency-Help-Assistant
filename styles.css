@@ -702,3 +702,51 @@ footer small{
   .topright .speak-trigger{padding:0 8px}
 }
 @media(prefers-reduced-motion:reduce){.topright .speak-trigger{transition:none}}
+
+
+/* Refined "I can't speak" entry: grouped with the emergency call action. */
+.hero-emergency .hero-call-112{display:none!important}
+.hero-emergency .speak-action{
+  display:grid;grid-template-columns:38px minmax(0,1fr) 18px;align-items:center;gap:11px;
+  width:100%;min-height:62px;margin-top:2px;padding:10px 13px;
+  border:1px solid #6bd9bd55;border-radius:11px;
+  background:#214a4b;color:#f3fffb;text-align:left;cursor:pointer;
+  font-family:var(--sans);transition:background .18s ease,border-color .18s ease,box-shadow .18s ease;
+}
+.hero-emergency .speak-action:hover,
+.hero-emergency .speak-action[aria-expanded="true"]{
+  background:#28595a;border-color:#83e3c9;box-shadow:0 0 0 3px #65d6b51a;
+}
+.hero-emergency .speak-action:active{background:#1b4145;box-shadow:none}
+.hero-emergency .speak-action:focus-visible{outline:3px solid #9cebd7;outline-offset:3px}
+.speak-action-icon{width:36px;height:36px;display:grid;place-items:center;border-radius:9px;background:#326765;color:#c6f5e7;font-size:19px}
+.speak-action>span:nth-child(2){display:grid;gap:4px;min-width:0}
+.speak-action strong{font-size:13px;font-weight:800;letter-spacing:-.2px}
+.speak-action small{color:#c1d8d3;font-size:10px;font-weight:500;line-height:1.35}
+.speak-action-arrow{color:#a8e8d5;font-size:18px;text-align:right;transition:transform .18s ease}
+.speak-action:hover .speak-action-arrow{transform:translateX(3px)}
+.speak-panel{position:static;width:100%;margin-top:3px;padding:17px;background:#f8fbf9;color:var(--ink);border:1px solid #dbe9e3;border-radius:12px;box-shadow:0 12px 28px #07151c24;text-align:left}
+.speak-panel-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.speak-panel-kicker{display:block;margin-bottom:6px;color:#087d70;font:800 8px var(--mono);letter-spacing:.9px}
+.speak-panel-head h2{margin:0;color:#142f38;font-size:20px;line-height:1.15;letter-spacing:-.65px}
+.speak-close{flex:none;width:30px;height:30px;display:grid;place-items:center;border:1px solid #dce8e2;border-radius:50%;background:#fff;color:#38534f;font-size:20px;line-height:1;cursor:pointer;transition:background .16s ease,border-color .16s ease}
+.speak-close:hover{background:#edf5f1;border-color:#b9d8cb}
+.speak-panel-intro{margin:9px 0 13px;color:#586d68;font-size:11px;line-height:1.6}
+.speak-panel .location-button{width:100%;min-height:44px;display:flex;align-items:center;justify-content:center;gap:8px;padding:10px 13px;border-radius:8px;font:750 11px var(--sans);cursor:pointer;transition:background .16s ease,border-color .16s ease,box-shadow .16s ease}
+.speak-panel .location-button-primary{border:1px solid #087d70;background:#087d70;color:#fff}
+.speak-panel .location-button-primary:hover{background:#066b61;border-color:#066b61;box-shadow:0 4px 12px #087d702b}
+.speak-panel .location-button-primary:active{background:#05584f;box-shadow:none}
+.speak-panel .location-button-secondary{border:1px solid #c9ded5;background:#eaf4ef;color:#145b50}
+.speak-panel .location-button-secondary:hover{background:#dceee6;border-color:#9fcbbb}
+.speak-panel .location-button:disabled{opacity:.48;cursor:not-allowed;box-shadow:none}
+.speak-panel button:focus-visible{outline:3px solid #087d70;outline-offset:3px}
+.speak-panel .location-status{margin:11px 0 0;color:#536b64;font-size:10px;line-height:1.55}
+.speak-panel .location-result{display:grid;gap:7px;margin-top:12px;padding:12px;background:#eef5f1;border:1px solid #d8e8df;border-radius:9px;overflow-wrap:anywhere}
+.speak-panel .demo-label{color:#668078;font:800 8px var(--mono);letter-spacing:1px}
+.speak-panel .location-result strong{color:#173b34;font:800 21px var(--mono);letter-spacing:.2px}
+.speak-panel .location-result>span:nth-of-type(2){color:#647972;font-size:10px;line-height:1.45}
+.speak-panel .copy-demo{justify-self:center;margin-top:2px;padding:7px 10px;border:1px solid transparent;border-radius:6px;background:transparent;color:#42645b;font:700 10px var(--sans);cursor:pointer}
+.speak-panel .copy-demo:hover{background:#e2eee8;border-color:#d2e4da}
+.speak-panel-caution{margin:12px 0 0;padding-top:10px;border-top:1px solid #e3ece7;color:#65756e;font-size:9px;line-height:1.55}
+@media(max-width:620px){.hero-emergency .speak-action{min-height:58px;padding:9px 11px}.speak-panel{padding:14px}.speak-panel-head h2{font-size:18px}.speak-panel .location-result strong{font-size:19px}}
+@media(prefers-reduced-motion:reduce){.speak-action,.speak-action-arrow,.speak-panel button{transition:none!important}}
