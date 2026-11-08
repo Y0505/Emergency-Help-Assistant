@@ -1089,3 +1089,33 @@ footer small{
   .speak-dialog,
   .speak-panel{animation:none!important;transition:none!important}
 }
+
+
+/* Final modal visibility and scroll correction. */
+.speak-panel{
+  z-index:2147483000!important;
+  display:flex!important;
+  align-items:center;
+  justify-content:center;
+  overflow-y:auto!important;
+  padding:18px!important;
+  background:rgba(3,12,17,.84)!important;
+  backdrop-filter:blur(7px) brightness(.72);
+  -webkit-backdrop-filter:blur(7px) brightness(.72);
+}
+.speak-panel[hidden]{display:none!important}
+.speak-panel:not(.is-open){visibility:hidden;opacity:0;pointer-events:none}
+.speak-panel.is-open{visibility:visible;opacity:1;pointer-events:auto}
+.speak-dialog{
+  flex:0 0 auto;
+  margin:auto;
+  width:min(440px,100%);
+  max-height:calc(100dvh - 36px);
+  overflow-y:auto;
+  overscroll-behavior:contain;
+  scrollbar-gutter:stable;
+}
+@media(max-width:620px){
+  .speak-panel{align-items:flex-start;padding:12px!important}
+  .speak-dialog{margin:auto;width:100%;max-height:calc(100dvh - 24px);padding:17px}
+}
