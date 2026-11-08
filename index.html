@@ -29,6 +29,29 @@
     <small>Use speakerphone and follow the call handler’s instructions.</small>
   </aside>
 </section>
+<section class="voice-assist" aria-labelledby="voiceAssistTitle">
+  <div class="voice-assist-copy">
+    <span class="voice-assist-kicker">CAN'T SPEAK?</span>
+    <h2 id="voiceAssistTitle">Let your phone read your location aloud.</h2>
+    <p>After calling emergency services, return here. Get your address, then play it aloud while your call is on speaker.</p>
+  </div>
+  <div class="voice-assist-actions">
+    <button class="location-button location-button-primary" id="getLocation" type="button">
+      <span aria-hidden="true">⌖</span> Get my location
+    </button>
+    <button class="location-button location-button-secondary" id="speakLocation" type="button" disabled>
+      <span aria-hidden="true">▶</span> Read address aloud
+    </button>
+    <p class="location-status" id="locationStatus" role="status" aria-live="polite">Your location is not being accessed. Tap “Get my location” when you are ready.</p>
+  </div>
+  <div class="location-result" id="locationResult" hidden>
+    <strong id="locationAddress"></strong>
+    <span id="locationCoordinates"></span>
+    <button id="copyLocation" type="button">Copy address and coordinates</button>
+  </div>
+  <p class="location-caution">Keep your emergency call on speaker. Some phones may not send website audio into the call, so check that the operator can hear it. If not, read the address or coordinates from the screen. Location lookup is optional and does not contact emergency services.</p>
+  <small class="location-credit">Address lookup by <a href="https://www.openstreetmap.org/" target="_blank" rel="noreferrer">OpenStreetMap</a>.</small>
+</section>
 <section class="situations" id="situations">
   <div class="sectionhead"><div><h2>What’s happening?</h2><p>Select the situation that best matches what you can see.</p></div></div>
   <div class="grid">
