@@ -73,27 +73,20 @@
 <main id="guide" hidden>
   <div class="guidegrid">
     <aside class="guide-sidebar">
-      <div class="sidebar-kicker"><span class="sidebar-kicker-mark">✳</span> FIRST AID GUIDE</div>
       <h2 id="guideTitle"></h2>
       <p class="guide-intro" id="guideIntro"></p>
-      <div class="progress-card">
-        <div class="progress-heading"><span>YOUR PROGRESS</span><strong><span id="stepCount"></span><i>/</i><span id="total"></span></strong></div>
-        <div class="progress"><i id="progress"></i></div>
-      </div>
       <div class="callbox">
-        <div class="callbox-icon" aria-hidden="true">!</div>
         <div class="callbox-content">
-          <span class="callbox-label">NEED URGENT HELP?</span>
-          <strong>Call for help</strong>
-          <p>In a life-threatening emergency, call 999 now. Use speakerphone if possible.</p>
-          <a href="tel:999"><span>Call emergency services</span><b>999 <i>↗</i></b></a>
+          <div class="callbox-heading"><span class="callbox-icon" aria-hidden="true">!</span><strong>Need emergency help?</strong></div>
+          <p>If someone is in immediate danger, call 999 now. Put your phone on speaker and follow the operator’s instructions.</p>
+          <a href="tel:999"><span>Call emergency services</span><b>999 <i aria-hidden="true">↗</i></b></a>
         </div>
       </div>
       <div class="source-card"><span class="source-dot"></span><span id="guideSource"></span></div>
     </aside>
-    <section class="step"><div class="stepmeta"><b id="stepNum">01</b><i></i><span id="category"></span></div><div class="stepbody"><div class="visual" id="visual"></div><div class="stepcopy"><small id="stepLabel"></small><h2 id="heading"></h2><p id="description"></p><div id="choices" class="choices"></div></div></div><div class="controls"><button id="prev">← BACK</button><button id="next">NEXT STEP →</button></div></section>
+    <section class="step"><div class="stepbody"><div class="step-visual-column"><div class="step-progress"><div class="step-progress-heading"><span>YOUR PROGRESS</span><strong><span id="stepCount"></span><i>/</i><span id="total"></span></strong></div><div class="progress"><i id="progress"></i></div></div><div class="stepmeta"><b id="stepNum">01</b><i></i><span id="category"></span></div><div class="visual" id="visual"></div></div><div class="stepcopy"><small id="stepLabel"></small><h2 id="heading"></h2><p id="description"></p><div id="choices" class="choices"></div></div></div><div class="controls"><button id="prev">← BACK</button><button id="next">NEXT STEP →</button></div></section>
   </div>
-  <div class="guidewarning">IF YOU ARE UNSURE, CALL 999 AND FOLLOW THE EMERGENCY CALL HANDLER’S INSTRUCTIONS.</div>
+  <div class="guidewarning"><span class="guidewarning-icon" aria-hidden="true">!</span><p><strong>Not sure what to do?</strong><span>Call 999 and follow the emergency call handler’s instructions.</span></p></div>
 </main>
 <footer><a class="footerbrand" href="#">EH<span>/</span>A</a><span>AN INDEPENDENT DEMONSTRATION PROJECT</span><div><a href="#" id="sources">SOURCES & SAFETY</a><a href="#" id="disclaimer">IMPORTANT INFORMATION</a></div><small>FIRST-AID DEMO · 2026</small></footer>
 </div>
