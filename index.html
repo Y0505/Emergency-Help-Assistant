@@ -33,7 +33,8 @@
       <span><strong>I can’t speak</strong><small>Let your phone read a message aloud</small></span>
       <span class="speak-action-arrow" aria-hidden="true">→</span>
     </button>
-    <section class="speak-panel" id="speakPanel" aria-labelledby="speakPanelTitle" hidden>
+    <section class="speak-panel" id="speakPanel" aria-labelledby="speakPanelTitle" role="dialog" aria-modal="true" hidden>
+      <div class="speak-dialog">
       <div class="speak-panel-head">
         <div><span class="speak-panel-kicker">VOICE ASSISTANCE · DEMO</span><h2 id="speakPanelTitle">Let your phone speak.</h2></div>
         <button class="speak-close" id="speakClose" type="button" aria-label="Close">×</button>
@@ -49,6 +50,7 @@
         <button class="copy-demo" id="copyLocation" type="button">Copy demo message</button>
       </div>
       <p class="speak-panel-caution">This is a simulated demo, not a real location service. An IP address cannot reliably identify an exact emergency address. Keep your call connected and follow the operator’s instructions.</p>
+      </div>
     </section>
   </aside>
 </section>
