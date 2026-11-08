@@ -1119,3 +1119,111 @@ footer small{
   .speak-panel{align-items:flex-start;padding:12px!important}
   .speak-dialog{margin:auto;width:100%;max-height:calc(100dvh - 24px);padding:17px}
 }
+
+
+/* Refined guide sidebar: clear hierarchy, progress and emergency action. */
+.guidebar{display:none!important}
+.guidegrid{
+  grid-template-columns:minmax(245px,285px) minmax(0,1fr);
+  gap:30px;
+  padding:34px 0 22px;
+  align-items:start;
+}
+.guide-sidebar{
+  position:sticky;
+  top:22px;
+  padding:22px 19px 17px!important;
+  border:1px solid #e0e9e4;
+  border-radius:16px;
+  background:linear-gradient(155deg,#fff 0%,#f7faf8 100%);
+  box-shadow:0 12px 34px rgba(24,55,43,.065);
+}
+.sidebar-kicker{
+  display:flex;align-items:center;gap:8px;
+  color:#71867b;font:800 8px var(--mono);letter-spacing:1.1px;
+}
+.sidebar-kicker-mark{
+  display:grid;place-items:center;width:23px;height:23px;
+  border-radius:7px;background:#e6f2eb;color:#28765a;font-size:13px;
+}
+.guide-sidebar h2{
+  margin:17px 0 9px!important;
+  color:#17392e!important;
+  font-size:clamp(29px,3vw,37px)!important;
+  line-height:1.02!important;
+  letter-spacing:-1.65px!important;
+}
+.guide-sidebar .guide-intro{
+  margin:0!important;color:#6b7d74!important;
+  font-size:11px!important;line-height:1.7!important;
+}
+.progress-card{
+  margin-top:21px;padding:13px 13px 12px;
+  border:1px solid #e3ece6;border-radius:10px;background:#f4f8f5;
+}
+.progress-heading{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.progress-heading>span{color:#7b8d83;font:800 7px var(--mono);letter-spacing:.8px}
+.progress-heading strong{display:flex;align-items:center;gap:5px;color:#315d49;font:800 10px var(--mono)}
+.progress-heading strong i{font-style:normal;color:#a5b4aa}
+.progress{height:6px;margin-top:11px;background:#dce8df;border-radius:20px}
+.progress i{background:linear-gradient(90deg,#277957,#55ae82);border-radius:20px}
+.progresslabels{display:none}
+.callbox{
+  position:relative;gap:12px;margin-top:15px!important;padding:15px 13px!important;
+  border:1px solid #f0d8d3!important;border-radius:11px!important;
+  background:linear-gradient(145deg,#fff8f6 0%,#fff0ec 100%)!important;
+}
+.callbox-icon{
+  flex:none;display:grid;place-items:center;width:29px;height:29px;
+  border-radius:9px;background:#e9564d;color:#fff;font-size:17px;font-weight:900;
+  box-shadow:0 4px 10px rgba(217,71,64,.18);
+}
+.callbox-content{min-width:0;flex:1}
+.callbox-label{display:block;margin:1px 0 5px;color:#b66a61;font:800 7px var(--mono);letter-spacing:.85px}
+.callbox-content>strong{display:block;color:#492c29;font-size:14px;letter-spacing:-.25px}
+.callbox-content>p{margin:6px 0 12px!important;color:#80645f!important;font-size:10px!important;line-height:1.6!important}
+.callbox-content>a{
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+  min-height:39px;padding:8px 10px;border-radius:8px;
+  background:#d94c43;color:#fff!important;text-decoration:none;
+  box-shadow:0 5px 12px rgba(217,76,67,.16);
+  transition:background .18s,transform .18s;
+}
+.callbox-content>a:hover{background:#c94038;transform:translateY(-1px)}
+.callbox-content>a>span{font-size:9px;font-weight:750}
+.callbox-content>a>b{font:900 14px var(--mono);white-space:nowrap}
+.callbox-content>a>b i{font-style:normal;font-size:12px}
+.source-card{
+  display:flex;align-items:flex-start;gap:8px;margin-top:13px;padding:10px 11px;
+  border:1px solid #e7ece8;border-radius:9px;background:#fbfcfb;
+}
+.source-dot{flex:none;width:6px;height:6px;margin-top:3px;border-radius:50%;background:#77a48b}
+.source-card .source{
+  display:block;margin:0;color:#849189;font:700 7px/1.55 var(--mono);
+  letter-spacing:.25px;
+}
+@media(max-width:900px){
+ .guidegrid{grid-template-columns:220px minmax(0,1fr);gap:18px}
+ .guide-sidebar{padding:18px 14px 14px!important}
+ .guide-sidebar h2{font-size:30px!important}
+}
+@media(max-width:620px){
+ .guidegrid{display:flex;flex-direction:column;gap:13px;padding:17px 0 15px}
+ .guide-sidebar{position:static;width:100%;padding:15px!important;border-radius:13px}
+ .sidebar-kicker{font-size:7px}
+ .sidebar-kicker-mark{width:21px;height:21px}
+ .guide-sidebar h2{font-size:27px!important;margin:11px 0 5px!important}
+ .guide-sidebar .guide-intro{font-size:10px!important;line-height:1.55!important}
+ .progress-card{margin-top:13px;padding:10px 11px}
+ .progress{margin-top:9px;height:5px}
+ .callbox{margin-top:11px!important;padding:11px!important;gap:9px}
+ .callbox-icon{width:25px;height:25px;font-size:14px}
+ .callbox-label{font-size:6px}
+ .callbox-content>strong{font-size:12px}
+ .callbox-content>p{font-size:9px!important;margin:4px 0 9px!important}
+ .callbox-content>a{min-height:35px;padding:7px 9px}
+ .callbox-content>a>span{font-size:8px}
+ .callbox-content>a>b{font-size:12px}
+ .source-card{margin-top:9px;padding:8px 9px}
+ .source-card .source{font-size:6px}
+}
