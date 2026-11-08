@@ -63,6 +63,28 @@ function openGuide(k){active=k;index=0;home.hidden=true;guideView.hidden=false;r
 function render(){const g=data[active],s=g.steps[index];$("guideTitle").textContent=g.title;$("guideIntro").textContent=g.intro;$("guideSource").textContent="SOURCE: "+g.source;$("guideid").textContent="GUIDE / "+String(Object.keys(data).indexOf(active)+1).padStart(2,"0");$("stepNum").textContent=String(index+1).padStart(2,"0");$("category").textContent=s[1];$("stepLabel").textContent=s[0];$("heading").textContent=s[2];$("description").textContent=s[3];$("visual").innerHTML=svg(s[4]);$("progress").style.width=((index+1)/g.steps.length*100)+"%";$("stepCount").textContent="STEP "+String(index+1).padStart(2,"0");$("total").textContent="OF "+String(g.steps.length).padStart(2,"0");$("prev").disabled=index===0;const next=$("next");next.hidden=!!s[5];next.textContent=index===g.steps.length-1?"RESTART GUIDE ↻":"NEXT STEP →";const box=$("choices");box.innerHTML="";if(s[5])s[5].forEach(([label,v])=>{let b=document.createElement("button");b.textContent=label;if(v==="severe"||v==="abnormal")b.className="danger";b.onclick=()=>{index=active==="choking"?(v==="mild"?1:v==="monitor"?0:2):(v==="normal"?4:v==="abnormal"?5:4);render()};box.appendChild(b)});else if(s[6]){let n=document.createElement("p");n.textContent=s[6];n.style.cssText="font-size:10px;line-height:1.7;color:#6f7d72;background:#f1f3ed;padding:12px";box.appendChild(n)}}
 document.querySelectorAll("[data-guide]").forEach(b=>b.addEventListener("click",()=>openGuide(b.dataset.guide)));$("back").onclick=()=>{guideView.hidden=true;home.hidden=false;window.scrollTo({top:0,behavior:"smooth"})};$("prev").onclick=()=>{if(index>0){index--;render()}};$("next").onclick=()=>{if(index===data[active].steps.length-1)index=0;else index++;render()};const modal=$("modal");function show(){modal.hidden=false;$("close").focus()}function hide(){modal.hidden=true}$("about").onclick=show;$("disclaimer").onclick=e=>{e.preventDefault();show()};$("sources").onclick=e=>{e.preventDefault();show()};$("close").onclick=hide;modal.onclick=e=>{if(e.target===modal)hide()};document.addEventListener("keydown",e=>{if(e.key==="Escape")hide()});
 
+/* Header-based emergency speech assistant. */
+(()=>{
+  const toggle=document.getElementById("speakToggle");
+  const panel=document.getElementById("speakPanel");
+  const close=document.getElementById("speakClose");
+  if(!toggle||!panel||!close)return;
+  const setOpen=open=>{
+    panel.hidden=!open;
+    toggle.setAttribute("aria-expanded",String(open));
+    if(open)document.getElementById("getLocation")?.focus();
+    else toggle.focus();
+  };
+  toggle.addEventListener("click",()=>setOpen(panel.hidden));
+  close.addEventListener("click",()=>setOpen(false));
+  document.addEventListener("click",event=>{
+    if(!panel.hidden&&!panel.contains(event.target)&&!toggle.contains(event.target))setOpen(false);
+  });
+  document.addEventListener("keydown",event=>{
+    if(event.key==="Escape"&&!panel.hidden)setOpen(false);
+  });
+})();
+
 /* Optional emergency location reader. Location is requested only after a user tap. */
 (()=>{
   const getButton=document.getElementById("getLocation");
