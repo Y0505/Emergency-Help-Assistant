@@ -343,3 +343,19 @@ footer small{color:#9aa7a8;font:700 7px var(--mono)}
   .sectionhead h2{font-size:34px}
   .card .title{margin-top:9px}
 }
+
+
+/* Improve header contrast on the light page background. */
+.brand-name{color:var(--navy)}
+.brand-name>span{color:var(--teal-dark)}
+.brand-name small{color:#71818a}
+.topright button{
+  color:var(--navy);
+  border-color:#cbd8d4;
+  background:#ffffff;
+}
+.topright button:hover{
+  color:var(--teal-dark);
+  border-color:#8fc9b9;
+  background:#edf7f3;
+}
