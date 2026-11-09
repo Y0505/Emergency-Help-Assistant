@@ -1639,3 +1639,70 @@ footer small{
     padding-top:10px;
   }
 }
+
+
+/* Polished step progress indicator */
+.step-progress{
+  padding:11px 12px 12px;
+  border:1px solid #e4ece6;
+  border-radius:12px;
+  background:linear-gradient(135deg,#f8fbf8 0%,#f1f7f2 100%);
+  box-shadow:0 3px 12px #244f3e08;
+  gap:0;
+}
+.step-progress-heading{
+  margin-bottom:10px;
+}
+.step-progress-heading>span{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  color:#718278;
+  font:800 8px/1 var(--mono);
+  letter-spacing:1.15px;
+}
+.step-progress-heading>span::before{
+  content:"";
+  width:7px;
+  height:7px;
+  flex:none;
+  border-radius:50%;
+  background:#48a879;
+  box-shadow:0 0 0 3px #48a8791c;
+}
+.step-progress-heading strong{
+  gap:5px;
+  padding:6px 9px;
+  border:1px solid #dce9df;
+  border-radius:7px;
+  background:#fff;
+  color:#285b43;
+  font:800 9px/1 var(--mono);
+  letter-spacing:.35px;
+}
+.step-progress-heading strong i{
+  color:#a8b8ad;
+  font-style:normal;
+  font-weight:600;
+}
+.step-progress .progress{
+  height:7px;
+  padding:1px;
+  border:1px solid #e0ebe3;
+  background:#e8f0ea;
+  border-radius:20px;
+}
+.step-progress .progress i{
+  min-width:7px;
+  box-shadow:0 1px 3px #28795730;
+}
+@media(max-width:620px){
+  .step-progress{
+    padding:9px 10px 10px;
+    border-radius:10px;
+  }
+  .step-progress-heading{margin-bottom:8px}
+  .step-progress-heading>span{font-size:7px;letter-spacing:1px}
+  .step-progress-heading strong{padding:6px 8px;font-size:8px}
+  .step-progress .progress{height:6px}
+}
