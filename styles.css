@@ -1619,3 +1619,23 @@ footer small{
     padding-top:12px;
   }
 }
+
+
+/* Navigation should follow the actual step content at every screen width.
+   Remove reserved vertical space that was pushing the buttons below the fold. */
+.stepbody{
+  min-height:0!important;
+}
+.stepcopy{
+  min-height:0!important;
+}
+@media(max-width:620px){
+  .stepbody{
+    padding-bottom:0;
+    gap:10px;
+  }
+  .controls{
+    margin-top:0;
+    padding-top:10px;
+  }
+}
