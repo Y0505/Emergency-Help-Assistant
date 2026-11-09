@@ -1528,3 +1528,17 @@ footer small{
   .next-action-card{margin-top:8px;padding:11px 12px}
   .next-action-card>p{font-size:9px}
 }
+
+
+/* Improve readability of the adult choking step title and instructions. */
+.stepcopy h2{
+  font-size:clamp(27px,3.2vw,39px);
+}
+.stepcopy>p{
+  font-size:14px;
+  line-height:1.85;
+}
+@media(max-width:620px){
+  .stepcopy h2{font-size:29px}
+  .stepcopy>p{font-size:13px;line-height:1.8}
+}
