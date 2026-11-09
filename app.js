@@ -95,6 +95,11 @@ document.querySelectorAll("[data-guide]").forEach(b=>b.addEventListener("click",
       window.requestAnimationFrame(()=>panel.classList.add("is-open"));
       close.focus();
     }else{
+      // Stop any ongoing read-aloud playback whenever the panel is closed.
+      if("speechSynthesis" in window){
+        window.speechSynthesis.cancel();
+        status.textContent="Audio playback stopped.";
+      }
       panel.classList.remove("is-open");
       closeTimer=window.setTimeout(()=>{panel.hidden=true;},240);
       if(restoreFocus)toggle.focus();
