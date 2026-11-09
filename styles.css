@@ -1454,3 +1454,77 @@ footer small{
 @media(prefers-reduced-motion:reduce){
   .choices button{transition:none}
 }
+
+
+/* Adult choking: make the emergency call and following action unmistakable. */
+.urgent-call-card{
+  display:grid;
+  gap:9px;
+  margin-top:5px;
+  padding:17px;
+  border:1px solid #f0c9c3;
+  border-radius:13px;
+  background:linear-gradient(145deg,#fff8f6 0%,#fff0ed 100%);
+  box-shadow:0 5px 16px rgba(153,57,47,.055);
+}
+.urgent-call-kicker,.next-action-kicker{
+  color:#ad5b52;
+  font:800 8px/1.3 var(--mono);
+  letter-spacing:1px;
+}
+.urgent-call-card>strong{
+  color:#542e2a;
+  font-size:clamp(21px,2.4vw,27px);
+  line-height:1.1;
+  letter-spacing:-.8px;
+}
+.urgent-call-card>p{
+  margin:0!important;
+  color:#755b56!important;
+  font-size:11px!important;
+  line-height:1.7!important;
+}
+.urgent-call-card>a{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  min-height:47px;
+  margin-top:3px;
+  padding:10px 13px;
+  border:1px solid #d94c43;
+  border-radius:9px;
+  background:#d94c43;
+  color:#fff;
+  text-decoration:none;
+  box-shadow:0 5px 13px rgba(217,76,67,.15);
+  transition:background .18s ease,transform .18s ease;
+}
+.urgent-call-card>a:hover{background:#bd3e37;transform:translateY(-1px)}
+.urgent-call-card>a>span{font-size:10px;font-weight:750}
+.urgent-call-card>a>b{font:900 16px var(--mono);white-space:nowrap}
+.urgent-call-card>a>b i{font-style:normal;font-size:12px}
+.next-action-card{
+  display:grid;
+  gap:6px;
+  margin-top:10px;
+  padding:13px 15px;
+  border:1px solid #e1e9e3;
+  border-radius:10px;
+  background:#f5f8f5;
+}
+.next-action-kicker{color:#63806e}
+.next-action-card>p{
+  margin:0;
+  color:#52665a;
+  font-size:10px;
+  line-height:1.65;
+}
+@media(max-width:620px){
+  .urgent-call-card{gap:8px;padding:14px;border-radius:11px}
+  .urgent-call-card>strong{font-size:23px}
+  .urgent-call-card>p{font-size:10px!important}
+  .urgent-call-card>a{min-height:45px}
+  .next-action-card{margin-top:8px;padding:11px 12px}
+  .next-action-card>p{font-size:9px}
+}
