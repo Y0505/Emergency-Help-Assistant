@@ -1604,3 +1604,18 @@ footer small{
     line-height:1.75;
   }
 }
+
+
+/* Keep step navigation close to the content on small screens. */
+@media(max-width:620px){
+  .stepbody{
+    min-height:0;
+  }
+  .stepcopy{
+    min-height:0;
+  }
+  .controls{
+    margin-top:12px;
+    padding-top:12px;
+  }
+}
