@@ -1312,3 +1312,65 @@ footer small{
 /* Text-only header brand, with no decorative square mark. */
 .brand{gap:0}
 .brand-name{display:block}
+
+/* High-visibility step navigation: clear labels, strong contrast and comfortable tap targets. */
+.controls{
+  display:flex;
+  align-items:stretch;
+  gap:12px;
+  padding-top:18px;
+  border-top:1px solid #e4ebe6;
+}
+.controls button{
+  display:inline-flex;
+  flex:1 1 0;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  min-width:0;
+  min-height:52px;
+  padding:12px 18px;
+  border:1px solid #cbd9d1;
+  border-radius:11px;
+  background:#f7faf7;
+  color:#244f3e;
+  font:750 12px/1.2 var(--sans);
+  letter-spacing:.2px;
+  opacity:1;
+  transition:background .18s ease,border-color .18s ease,transform .18s ease,box-shadow .18s ease;
+}
+.controls button:last-child{
+  margin-left:0;
+  border-color:#245d49;
+  background:#245d49;
+  color:#fff;
+  box-shadow:0 5px 14px rgba(36,93,73,.16);
+}
+.controls button:hover:not(:disabled){
+  border-color:#1c7558;
+  background:#eaf4ed;
+  transform:translateY(-1px);
+}
+.controls button:last-child:hover:not(:disabled){
+  background:#194b3a;
+  border-color:#194b3a;
+}
+.controls button:disabled{
+  opacity:1;
+  cursor:not-allowed;
+  color:#718078;
+  border-color:#dce5df;
+  background:#f0f3f0;
+  box-shadow:none;
+}
+.controls button:focus-visible{
+  outline:3px solid #83bda0;
+  outline-offset:3px;
+}
+@media(max-width:620px){
+  .controls{gap:9px;padding-top:14px}
+  .controls button{min-height:50px;padding:11px 9px;font-size:11px;border-radius:10px}
+}
+@media(prefers-reduced-motion:reduce){
+  .controls button{transition:none}
+}
